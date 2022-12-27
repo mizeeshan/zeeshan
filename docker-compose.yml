@@ -1,0 +1,25 @@
+services:
+  new:
+    container_name: alto
+    image: phpmyadmin
+    ports:
+      - 90:90
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: zeeshan
+      PMA_PASSWORD: 123
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: end
+    image: mysql
+    restart: always
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d/
+    environment:
+      MYSQL_DATABASE: xeeshan
+      MYSQL_ROOT_PASSWORD: 123
+    ports:
+      - 3306:3306
